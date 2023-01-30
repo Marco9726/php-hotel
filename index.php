@@ -49,14 +49,14 @@ $hotels = [
 // 	}
 // }
 
-foreach ($hotels as $hotel) {
-	var_dump($hotel);
-	echo "<br>";
-	foreach ($hotel as $info) {
-		var_dump($info);
-		echo "<br>";
-	}
-}
+// foreach ($hotels as $hotel) {
+// 	var_dump($hotel);
+// 	echo "<br>";
+// 	foreach ($hotel as $info) {
+// 		var_dump($info);
+// 		echo "<br>";
+// 	}
+// }
 
 ?>
 
@@ -74,7 +74,16 @@ foreach ($hotels as $hotel) {
 
 <body>
 	<div class="container w-75 mt-4">
+		<table class="w-100">
+			<thead>
+				<?php foreach ($hotels as $hotel) { ?>
+					<th><?php echo strtoupper($hotel['name']); ?></th>
+				<?php } ?>
+			</thead>
+			<tbody>
 
+			</tbody>
+		</table>
 	</div>
 </body>
 

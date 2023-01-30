@@ -40,10 +40,11 @@ $hotels = [
 
 ];
 
-foreach ($hotels as $hotel) {
-	// salvo l'array delle chiavi in una variabile 
-	$tableHeaders = array_keys($hotel);
-}
+// foreach ($hotels as $hotel) {
+// 	// salvo l'array delle chiavi in una variabile 
+// 	$tableHeaders = array_keys($hotel);
+// }
+$tableHeaders = array_keys($hotels[0]);
 
 ?>
 
@@ -70,15 +71,20 @@ foreach ($hotels as $hotel) {
 			<tbody>
 				<?php foreach ($hotels as $hotel) { ?>
 					<tr>
-						<?php foreach ($hotel as $info) { ?>
+						<?php foreach ($hotel as $key => $info) { ?>
 							<td>
-								<?php if ($info === true) {
-									echo 'si';
-								} else if ($info === false) {
-									echo 'no';
+								<?php
+								if ($key === 'parking') {
+									// if ($info) {
+									// 	echo 'si';
+									// } else {
+									// 	echo 'no';
+									// }
+									echo ($info) ? 'si' : 'no';
 								} else {
 									echo $info;
-								} ?>
+								}
+								?>
 							</td>
 						<?php } ?>
 					</tr>

@@ -40,23 +40,10 @@ $hotels = [
 
 ];
 
-// for ($i = 0; $i < count($hotels); $i++) {
-// 	var_dump($hotels[$i]);
-// 	echo "<br>";
-// 	foreach ($hotels[$i] as $key) {
-// 		var_dump($key);
-// 		echo "<br>";
-// 	}
-// }
-
-// foreach ($hotels as $hotel) {
-// 	var_dump($hotel);
-// 	echo "<br>";
-// 	foreach ($hotel as $info) {
-// 		var_dump($info);
-// 		echo "<br>";
-// 	}
-// }
+foreach ($hotels as $hotel) {
+	// salvo l'array delle chiavi in una variabile 
+	$tableHeaders = array_keys($hotel);
+}
 
 ?>
 
@@ -76,12 +63,26 @@ $hotels = [
 	<div class="container w-75 mt-4">
 		<table class="w-100">
 			<thead>
-				<?php foreach ($hotels as $hotel) { ?>
-					<th><?php echo strtoupper($hotel['name']); ?></th>
+				<?php foreach ($tableHeaders as $info) { ?>
+					<th><?php echo strtoupper($info); ?></th>
 				<?php } ?>
 			</thead>
 			<tbody>
-
+				<?php foreach ($hotels as $hotel) { ?>
+					<tr>
+						<?php foreach ($hotel as $info) { ?>
+							<td>
+								<?php if ($info === true) {
+									echo 'si';
+								} else if ($info === false) {
+									echo 'no';
+								} else {
+									echo $info;
+								} ?>
+							</td>
+						<?php } ?>
+					</tr>
+				<?php } ?>
 			</tbody>
 		</table>
 	</div>

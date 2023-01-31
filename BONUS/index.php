@@ -4,8 +4,6 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-$select = $_GET['select'];
-
 $hotels = [
 
 	[
@@ -51,20 +49,21 @@ $hotels = [
 
 ];
 
+
 $star = '<i class="fa-solid fa-star text-warning"></i>';
 
 $filteredArray = $hotels;
 
-if (isset($_GET['select']) !== 'Qualsiasi valutazione') {
-	$selectedStars = $select;
+if (isset($_GET['select'])) {
 
+	$select = $_GET['select'];
 	$filtredHotels = [];
 	foreach ($hotels as $hotel) {
-		if ($hotel['vote'] == $selectedStars) {
+		if ($hotel['vote'] == $select) {
 			$filtredHotels[] = $hotel;
+			$filteredArray = $filtredHotels;
 		}
 	}
-	$filteredArray = $filtredHotels;
 }
 
 ?>

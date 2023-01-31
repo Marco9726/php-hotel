@@ -4,6 +4,8 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+$select = $_GET['select'];
+
 $hotels = [
 
 	[
@@ -48,7 +50,22 @@ $hotels = [
 	]
 
 ];
+
 $star = '<i class="fa-solid fa-star text-warning"></i>';
+
+$filteredArray = $hotels;
+
+if (isset($_GET['select']) !== 'Qualsiasi valutazione') {
+	$selectedStars = $select;
+
+	$filtredHotels = [];
+	foreach ($hotels as $hotel) {
+		if ($hotel['vote'] == $selectedStars) {
+			$filtredHotels[] = $hotel;
+		}
+	}
+	$filteredArray = $filtredHotels;
+}
 
 ?>
 
@@ -68,8 +85,8 @@ $star = '<i class="fa-solid fa-star text-warning"></i>';
 <body>
 	<div class="container w-75 mt-4">
 		<div class="row my-4">
-			<form action="GET" class="row">
-				<select class="form-select w-25 me-3" aria-label="Default select example">
+			<form action="./index.php" class="row" method="GET">
+				<select class="form-select w-25 me-3" aria-label="Default select example" name="select">
 					<option selected>Qualsiasi valutazione</option>
 					<option value="1">1</option>
 					<option value="2">2</option>
@@ -82,7 +99,7 @@ $star = '<i class="fa-solid fa-star text-warning"></i>';
 		</div>
 
 		<div class="row w-100 ">
-			<?php foreach ($hotels as $hotel) { ?>
+			<?php foreach ($filteredArray as $hotel) { ?>
 				<div class="card p-0 mb-3 me-3">
 					<img src="<?php echo $hotel['img'] ?>" alt="hotel-image" class="card-img-top">
 					<div class="card-body">

@@ -4,6 +4,9 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+$flag = true;
+
+
 $hotels = [
 
 	[
@@ -51,15 +54,18 @@ $hotels = [
 
 
 $star = '<i class="fa-solid fa-star text-warning"></i>';
-
+// creo una copia dell'array
 $filteredArray = $hotels;
-
+// se esiste la proprietà di GET 'select' 
 if (isset($_GET['select'])) {
 
 	$select = $_GET['select'];
 	$filtredHotels = [];
+	// ciclo gli hotel 
 	foreach ($hotels as $hotel) {
+		// se la proprietà dell'hotel 'vote' è uguale alla select 
 		if ($hotel['vote'] == $select) {
+			// aggiungo tale 'hotel' al nuovo array 
 			$filtredHotels[] = $hotel;
 			$filteredArray = $filtredHotels;
 		}
@@ -86,12 +92,13 @@ if (isset($_GET['select'])) {
 		<div class="row my-4">
 			<form action="./index.php" class="row" method="GET">
 				<select class="form-select w-25 me-3" aria-label="Default select example" name="select">
-					<option selected>Qualsiasi valutazione</option>
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
+					<!-- aggiungo l'attributo 'selected' alla option qualora la proprietà di GET 'select'sia la stessa del value della option  -->
+					<option>Qualsiasi valutazione</option>
+					<option value="1" <?php echo ($_GET['select'] == '1')  ? 'selected' : '' ?>>1</option>
+					<option value="2" <?php echo ($_GET['select'] == '2')  ? 'selected' : '' ?>>2</option>
+					<option value="3" <?php echo ($_GET['select'] == '3')  ? 'selected' : '' ?>>3</option>
+					<option value="4" <?php echo ($_GET['select'] == '4')  ? 'selected' : '' ?>>4</option>
+					<option value="5" <?php echo ($_GET['select'] == '5')  ? 'selected' : '' ?>>5</option>
 				</select>
 				<button class="col-1 btn btn-primary" type="submit">filtra</button>
 			</form>
